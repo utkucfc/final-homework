@@ -1,13 +1,14 @@
 import fs from "fs/promises";
 import path from "path";
-const filePath = "/tmp/db.json";
+const filePath = path.join(process.cwd(), "data", "db.json");
+fs.chmod(filePath, 777);
 
 export const getCars = async () => {
     const cars = await fs.readFile(filePath, {
         encoding: "utf-8",
     });
 
-    return JSON.parse(cars).cars;
+    return JSON.parse(cars)?.cars || [];
 };
 
 export const getCarById = async (carId) => {
@@ -47,7 +48,7 @@ export const addCar = async (car) => {
         JSON.stringify({
             cars,
         }),
-        { encoding: "utf-8" }
+        { encoding: "utf-8", flag: "wx" }
     );
 
     return cars;
