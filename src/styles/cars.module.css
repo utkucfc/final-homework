@@ -70,7 +70,7 @@
     margin: auto;
 }
 .submitButton {
-    margin: auto;
+    margin: auto !important;
     margin-top: 20px;
 }
 .stackCarForm {
