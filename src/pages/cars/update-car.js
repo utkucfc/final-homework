@@ -70,7 +70,7 @@ const UpdateCar = () => {
 
     const handleUpdateCar = async (values) => {
         try {
-            await fetch(`http://localhost:3001/cars/${values.id}`, {
+            await fetch(`http://localhost:3000/api/cars/${values.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -78,10 +78,9 @@ const UpdateCar = () => {
                 body: JSON.stringify(values),
             });
 
-            const updatedData = await fetch("http://localhost:3001/cars").then(
-                (response) => response.json()
-            );
-            dispatch(setCars(updatedData));
+            const response = await fetch("http://localhost:3000/api/cars");
+            const data = await response.json();
+            dispatch(setCars(data));
 
             // formu sıfırla
             formik.resetForm();
@@ -93,7 +92,7 @@ const UpdateCar = () => {
     const handleFetchCarData = async () => {
         try {
             const response = await fetch(
-                `http://localhost:3001/cars/${formik.values.id}`
+                `http://localhost:3000/api/cars/${formik.values.id}`
             );
             const carData = await response.json();
 

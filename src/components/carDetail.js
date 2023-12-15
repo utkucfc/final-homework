@@ -33,8 +33,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function CarDetail({ car, onDeleteCar }) {
     const router = useRouter();
     const handleDeleteClick = () => {
-        onDeleteCar(car.id);
-        router.push("/cars");
+        if (window.confirm("Are you sure you want to delete this car?")) {
+            onDeleteCar(car.id);
+            router.push("/cars");
+        }
     };
     return (
         <div className={css.carDetailMain}>

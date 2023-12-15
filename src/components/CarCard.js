@@ -7,8 +7,12 @@ import { Button, CardActionArea } from "@mui/material";
 import css from "@/styles/cars.module.css";
 
 export default function CarCard({ car, onDeleteCar }) {
-    const handleDeleteClick = () => {
-        onDeleteCar(car.id);
+    const handleDeleteClick = (e) => {
+        e.preventDefault();
+
+        if (window.confirm("Are you sure you want to delete this car?")) {
+            onDeleteCar(car.id);
+        }
     };
     return (
         <Card className={css.carCard} sx={{ maxWidth: 350 }}>

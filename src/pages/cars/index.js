@@ -10,29 +10,22 @@ const Home = () => {
     const cars = useSelector(selectCars);
 
     useEffect(() => {
-        const fetchData = async () => {
+        (async () => {
             try {
-                const response = await fetch("http://localhost:3001/cars");
-                const data = await response.json();
-                dispatch(setCars(data));
+                await fetchAndSetCars(dispatch);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
-        };
-
-        fetchData();
+        })();
     }, [dispatch]);
 
     const handleDeleteCar = async (carId) => {
         try {
-            await fetch(`http://localhost:3001/cars/${carId}`, {
+            await fetch(`http://localhost:3000/api/cars/${carId}`, {
                 method: "DELETE",
             });
 
-            const updatedData = await fetch("http://localhost:3001/cars").then(
-                (response) => response.json()
-            );
-            dispatch(setCars(updatedData));
+            await fetchAndSetCars(dispatch);
         } catch (error) {
             console.error("Error deleting car:", error);
         }
@@ -57,6 +50,12 @@ const Home = () => {
             </ul>
         </div>
     );
+};
+
+const fetchAndSetCars = async (dispatch) => {
+    const response = await fetch("http://localhost:3000/api/cars");
+    const data = await response.json();
+    dispatch(setCars(data));
 };
 
 export default Home;

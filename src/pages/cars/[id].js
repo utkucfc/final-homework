@@ -8,40 +8,44 @@ export default function Cd() {
     const router = useRouter();
     const { id } = router.query;
     const [car, setCar] = useState();
+    const [message, setMessage] = useState("Loading...");
+
     const handleDeleteCar = async (carId) => {
         try {
-            await fetch(`http://localhost:3001/cars/${carId}`, {
+            await fetch(`http://localhost:3000/api/cars/${carId}`, {
                 method: "DELETE",
             });
 
-            const updatedData = await fetch("http://localhost:3001/cars").then(
-                (response) => response.json()
-            );
-            dispatch(setCars(updatedData));
+            router.push("/cars");
         } catch (error) {
             console.error("Error deleting car:", error);
         }
     };
     useEffect(() => {
         if (id) {
-            const fetchData = async () => {
+            (async () => {
                 try {
                     const response = await fetch(
-                        `http://localhost:3001/cars/${id}`
+                        `http://localhost:3000/api/cars/${id}`
                     );
+                    if (!response.ok) {
+                        return setMessage("Car Not Found...");
+                    }
                     const data = await response.json();
                     setCar(data);
                 } catch (error) {
                     console.error("Error fetching data:", error);
                 }
-            };
-            fetchData();
+            })();
         }
     }, [id]);
     if (!car) {
-        return <div>Loading...</div>;
+        return (
+            <div>
+                <h1>{message}</h1>
+            </div>
+        );
     } else {
-        console.log(car);
         return (
             <div className={css.content}>
                 <CarDetail car={car} onDeleteCar={handleDeleteCar} />
