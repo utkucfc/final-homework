@@ -119,7 +119,7 @@ const UpdateCar = () => {
 
     return (
         <div>
-            <h2>Update Car</h2>
+            <h2 className={css.title}>Update Car</h2>
             <div>
                 {/* Formik usage */}
 
