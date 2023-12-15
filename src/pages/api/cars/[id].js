@@ -15,8 +15,10 @@ export default async function handler(req, res) {
     } else if (req.method === "PUT") {
         try {
             const cars = await updateCar(id, req.body);
+            console.log(cars);
             return res.status(200).json(cars);
-        } catch {
+        } catch (error) {
+            console.error(error);
             return res.status(500).json({ success: false });
         }
     } else {

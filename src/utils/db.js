@@ -1,80 +1,81 @@
-import fs from "fs/promises";
-import path from "path";
-const filePath = path.join(process.cwd(), "data", "db.json");
-fs.chmod(filePath, 777);
+import mongoose from "mongoose";
+import CarSchema from "@/models/Car";
 
 export const getCars = async () => {
-    const cars = await fs.readFile(filePath, {
-        encoding: "utf-8",
-    });
+    let client;
+    try {
+        client = await mongoose.connect(process.env.MONGODB_URI);
+    } catch (error) {
+        console.log("MongoDB Connection Error:", error);
+    }
 
-    return JSON.parse(cars)?.cars || [];
+    const cars = (await client.model("Car").find({})) || [];
+
+    await mongoose.disconnect();
+
+    return cars;
 };
 
 export const getCarById = async (carId) => {
-    const cars = await getCars();
-    const car = cars.find((car) => car.id == carId);
+    let client;
+    try {
+        client = await mongoose.connect(process.env.MONGODB_URI);
+    } catch (error) {
+        console.log("MongoDB Connection Error:", error);
+    }
+
+    const car = await client.model("Car").findOne({ id: carId });
+
+    await mongoose.disconnect();
 
     return car;
 };
 
 export const deleteCar = async (carId) => {
-    let cars = await getCars();
+    let client;
+    try {
+        client = await mongoose.connect(process.env.MONGODB_URI);
+    } catch (error) {
+        console.log("MongoDB Connection Error:", error);
+    }
 
-    const index = cars.findIndex((car) => car.id == carId);
-    cars.splice(index, 1);
+    await client.model("Car").findOneAndDelete({ id: carId });
 
-    await fs.writeFile(
-        filePath,
-        JSON.stringify({
-            cars,
-        }),
-        { encoding: "utf-8" }
-    );
-
-    return true;
+    await mongoose.disconnect();
 };
 
 export const addCar = async (car) => {
-    let cars = await getCars();
+    let client;
+    try {
+        client = await mongoose.connect(process.env.MONGODB_URI);
+    } catch (error) {
+        console.log("MongoDB Connection Error:", error);
+    }
 
-    const newId = cars.length > 0 ? Math.max(...cars.map((c) => c.id)) + 1 : 1;
+    let cars = (await client.model("Car").find({})) || [];
+
+    const newId =
+        cars.length > 0 ? (Math.max(...cars.map((c) => c.id)) || 0) + 1 : 1;
 
     const newCar = { ...car, id: newId };
-    cars.push(newCar);
 
-    await fs.writeFile(
-        filePath,
-        JSON.stringify({
-            cars,
-        }),
-        { encoding: "utf-8", flag: "wx" }
-    );
+    await client.model("Car").create(newCar);
 
-    return cars;
+    await mongoose.disconnect();
 };
 
 export const updateCar = async (carId, updatedDetails) => {
-    const cars = await getCars();
-    const carIndex = cars.findIndex((c) => c.id == carId);
-
-    if (carIndex !== -1) {
-        const existingCar = cars[carIndex];
-
-        const updatedCar = { ...existingCar, ...updatedDetails };
-
-        cars[carIndex] = updatedCar;
-
-        await fs.writeFile(
-            filePath,
-            JSON.stringify({
-                cars,
-            }),
-            { encoding: "utf-8" }
-        );
-
-        return cars;
-    } else {
-        throw new Error(`Car with ID ${carId} not found`);
+    let client;
+    try {
+        client = await mongoose.connect(process.env.MONGODB_URI);
+    } catch (error) {
+        console.log("MongoDB Connection Error:", error);
     }
+
+    const filter = { id: carId };
+    const update = { $set: updatedDetails };
+
+    await client.model("Car").updateOne(filter, update);
+
+    await mongoose.disconnect();
 };

@@ -28,13 +28,13 @@ export default function CarCard({ car, onDeleteCar }) {
                         {car.model}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        <div className={css.spec}>
+                        <span className={css.spec}>
                             {/* <span>Car ID: {car.id}</span> */}
                             <span>Engine: {car.engine}</span>
                             <span>Fuel Type: {car.fuelType}</span>
                             <span>Start Year: {car.startYear}</span>
                             <span>End Year: {car.endYear}</span>
-                        </div>
+                        </span>
                     </Typography>
                     <Button
                         variant="contained"
