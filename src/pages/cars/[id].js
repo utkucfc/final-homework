@@ -12,9 +12,12 @@ export default function Cd() {
 
     const handleDeleteCar = async (carId) => {
         try {
-            await fetch(`http://localhost/api/cars/${carId}`, {
-                method: "DELETE",
-            });
+            await fetch(
+                `https://final-homework-utkucfc.vercel.app/api/cars/${carId}`,
+                {
+                    method: "DELETE",
+                }
+            );
 
             router.push("/cars");
         } catch (error) {
@@ -26,7 +29,7 @@ export default function Cd() {
             (async () => {
                 try {
                     const response = await fetch(
-                        `http://localhost/api/cars/${id}`
+                        `https://final-homework-utkucfc.vercel.app/api/cars/${id}`
                     );
                     if (!response.ok) {
                         return setMessage("Car Not Found...");
