@@ -22,7 +22,7 @@ const Home = () => {
     const handleDeleteCar = async (carId) => {
         try {
             await fetch(
-                `https://final-homework-jhss.vercel.app/api/cars/${carId}`,
+                `https://final-homework-rho.vercel.app/api/cars/${carId}`,
                 {
                     method: "DELETE",
                 }
@@ -57,7 +57,7 @@ const Home = () => {
 
 const fetchAndSetCars = async (dispatch) => {
     const response = await fetch(
-        "https://final-homework-jhss.vercel.app/api/cars"
+        "https://final-homework-rho.vercel.app/api/cars"
     );
     const data = await response.json();
     dispatch(setCars(data));
