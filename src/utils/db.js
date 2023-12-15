@@ -1,7 +1,9 @@
 import fs from "fs/promises";
+import path from "path";
+const filePath = path.join(process.cwd(), "data", "db.json");
 
 export const getCars = async () => {
-    const cars = await fs.readFile(process.cwd() + "/data/db.json", {
+    const cars = await fs.readFile(filePath, {
         encoding: "utf-8",
     });
 
@@ -22,7 +24,7 @@ export const deleteCar = async (carId) => {
     cars.splice(index, 1);
 
     await fs.writeFile(
-        process.cwd() + "/data/db.json",
+        filePath,
         JSON.stringify({
             cars,
         }),
@@ -41,7 +43,7 @@ export const addCar = async (car) => {
     cars.push(newCar);
 
     await fs.writeFile(
-        process.cwd() + "/data/db.json",
+        filePath,
         JSON.stringify({
             cars,
         }),
@@ -63,7 +65,7 @@ export const updateCar = async (carId, updatedDetails) => {
         cars[carIndex] = updatedCar;
 
         await fs.writeFile(
-            process.cwd() + "/data/db.json",
+            filePath,
             JSON.stringify({
                 cars,
             }),

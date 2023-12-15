@@ -13,7 +13,7 @@ export default function Cd() {
     const handleDeleteCar = async (carId) => {
         try {
             await fetch(
-                `https://final-homework-rho.vercel.app/api/cars/${carId}`,
+                `https://final-homework-utkucfc.vercel.app/api/cars/${carId}`,
                 {
                     method: "DELETE",
                 }
@@ -29,7 +29,7 @@ export default function Cd() {
             (async () => {
                 try {
                     const response = await fetch(
-                        `https://final-homework-rho.vercel.app/api/cars/${id}`
+                        `https://final-homework-utkucfc.vercel.app/api/cars/${id}`
                     );
                     if (!response.ok) {
                         return setMessage("Car Not Found...");
