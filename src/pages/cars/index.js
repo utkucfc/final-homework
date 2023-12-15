@@ -21,9 +21,12 @@ const Home = () => {
 
     const handleDeleteCar = async (carId) => {
         try {
-            await fetch(`http://localhost:3000/api/cars/${carId}`, {
-                method: "DELETE",
-            });
+            await fetch(
+                `https://final-homework-jhss.vercel.app/api/cars/${carId}`,
+                {
+                    method: "DELETE",
+                }
+            );
 
             await fetchAndSetCars(dispatch);
         } catch (error) {
@@ -53,7 +56,9 @@ const Home = () => {
 };
 
 const fetchAndSetCars = async (dispatch) => {
-    const response = await fetch("http://localhost:3000/api/cars");
+    const response = await fetch(
+        "https://final-homework-jhss.vercel.app/api/cars"
+    );
     const data = await response.json();
     dispatch(setCars(data));
 };

@@ -31,7 +31,7 @@
 
 //     const handleAddCar = async () => {
 //         try {
-//             await fetch("http://localhost:3000/cars", {
+//             await fetch("https://final-homework-jhss.vercel.app/cars", {
 //                 method: "POST",
 //                 headers: {
 //                     "Content-Type": "application/json",
@@ -39,7 +39,7 @@
 //                 body: JSON.stringify(newCar),
 //             });
 
-//             const updatedData = await fetch("http://localhost:3000/cars").then(
+//             const updatedData = await fetch("https://final-homework-jhss.vercel.app/cars").then(
 //                 (response) => response.json()
 //             );
 //             dispatch(setCars(updatedData));
@@ -385,7 +385,7 @@ const AddCar = () => {
 
     const handleAddCar = async (values) => {
         try {
-            await fetch("http://localhost:3000/api/cars", {
+            await fetch("https://final-homework-jhss.vercel.app/api/cars", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -393,7 +393,9 @@ const AddCar = () => {
                 body: JSON.stringify(values),
             });
 
-            const response = await fetch("http://localhost:3000/api/cars");
+            const response = await fetch(
+                "https://final-homework-jhss.vercel.app/api/cars"
+            );
             const data = await response.json();
             dispatch(setCars(data));
 
