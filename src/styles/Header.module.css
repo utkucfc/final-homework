@@ -1,21 +1,22 @@
 .header {
     background-color: #333;
     padding: 1rem;
-}
-
-.navContainer {
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .navList {
     list-style: none;
-    padding: 0;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navItem {
-    margin-right: 1rem;
+    margin: 0 50px;
+    border: 1px solid #fff;
+    padding: 10px;
 }
 
 .link {

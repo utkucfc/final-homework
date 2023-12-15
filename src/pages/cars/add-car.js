@@ -321,6 +321,8 @@ import { useDispatch } from "react-redux";
 import { setCars } from "@/redux/carsSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Button, Stack, TextField } from "@mui/material";
+import css from "@/styles/cars.module.css";
 
 const validationSchema = Yup.object({
     brand: Yup.string().required("Brand is required"),
@@ -408,180 +410,301 @@ const AddCar = () => {
 
     return (
         <div>
-            <h2>Add a New Car</h2>
+            <h2 className={css.title}>Add a New Car</h2>
             <div>
                 {/* Formik usage */}
-                <form onSubmit={formik.handleSubmit}>
-                    <label>Brand:</label>
-                    <input
-                        type="text"
-                        name="brand"
-                        value={formik.values.brand}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.brand}</div>
 
-                    <label>Model:</label>
-                    <input
-                        type="text"
-                        name="model"
-                        value={formik.values.model}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.model}</div>
-                    <label>Start Year:</label>
-                    <input
-                        type="text"
-                        name="startYear"
-                        value={formik.values.startYear}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.startYear}</div>
-                    <label>End Year:</label>
-                    <input
-                        type="text"
-                        name="endYear"
-                        value={formik.values.endYear}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.endYear}</div>
-                    <label>Engine:</label>
-                    <input
-                        type="text"
-                        name="engine"
-                        value={formik.values.engine}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.engine}</div>
-                    <label>Horsepower:</label>
-                    <input
-                        type="text"
-                        name="horsePower"
-                        value={formik.values.horsePower}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.horsePower}</div>
-                    <label>Fuel Type:</label>
-                    <input
-                        type="text"
-                        name="fuelType"
-                        value={formik.values.fuelType}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.fuelType}</div>
-                    <label>Fuel Consumption - City:</label>
-                    <input
-                        type="text"
-                        name="fuelConsumptionCity"
-                        value={formik.values.fuelConsumptionCity}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.fuelConsumptionCity}</div>
-                    <label>Fuel Consumption Open Road:</label>
-                    <input
-                        type="text"
-                        name="fuelConsumptionOpenRoad"
-                        value={formik.values.fuelConsumptionOpenRoad}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.fuelConsumptionOpenRoad}</div>
-                    <label>Top Speed:</label>
-                    <input
-                        type="text"
-                        name="topSpeed"
-                        value={formik.values.topSpeed}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.topSpeed}</div>
-                    <label>0-100:</label>
-                    <input
-                        type="text"
-                        name="zeroToHundred"
-                        value={formik.values.zeroToHundred}
-                        onChange={formik.handleChange}
-                    />
-                    <label>Torque:</label>
-                    <input
-                        type="text"
-                        name="torque"
-                        value={formik.values.torque}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.torque}</div>
-                    <label>Number Of Cylinders:</label>
-                    <input
-                        type="text"
-                        name="numberOfCylinders"
-                        value={formik.values.numberOfCylinders}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.numberOfCylinders}</div>
-                    <label>Number Of Valves:</label>
-                    <input
-                        type="text"
-                        name="numberOfValves"
-                        value={formik.values.numberOfValves}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.numberOfValves}</div>
-                    <label>Number Of Seats:</label>
-                    <input
-                        type="text"
-                        name="numberOfSeats"
-                        value={formik.values.numberOfSeats}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.numberOfSeats}</div>
-                    <label>Number Of Doors:</label>
-                    <input
-                        type="text"
-                        name="numberOfDoors"
-                        value={formik.values.numberOfDoors}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.numberOfDoors}</div>
-                    <label>Fuel Tank Capacity:</label>
-                    <input
-                        type="text"
-                        name="fuelTankCapacity"
-                        value={formik.values.fuelTankCapacity}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.fuelTankCapacity}</div>
-                    <label>Transmission:</label>
-                    <input
-                        type="text"
-                        name="transmission"
-                        value={formik.values.transmission}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.transmission}</div>
-                    <label>Number Of Speeds:</label>
-                    <input
-                        type="text"
-                        name="numberOfSpeeds"
-                        value={formik.values.numberOfSpeeds}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.numberOfSpeeds}</div>
-                    <label>Traction:</label>
-                    <input
-                        type="text"
-                        name="traction"
-                        value={formik.values.traction}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.traction}</div>
-                    <label>Image URL:</label>
-                    <input
-                        type="text"
-                        name="image"
-                        value={formik.values.image}
-                        onChange={formik.handleChange}
-                    />
-                    <div>{formik.errors.image}</div>
-
-                    <button type="submit">Add Car</button>
+                <form className={css.addCarForm} onSubmit={formik.handleSubmit}>
+                    <Stack
+                        className={css.stackCarForm}
+                        spacing={{ xs: 1, sm: 2 }}
+                        direction="row"
+                        useFlexGap
+                        flexWrap="wrap"
+                    >
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Brand:"
+                                variant="outlined"
+                                type="text"
+                                name="brand"
+                                value={formik.values.brand}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.brand}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Model:"
+                                variant="outlined"
+                                type="text"
+                                name="model"
+                                value={formik.values.model}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.model}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Start Year:"
+                                variant="outlined"
+                                type="text"
+                                name="startYear"
+                                value={formik.values.startYear}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.startYear}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="End Year:"
+                                variant="outlined"
+                                type="text"
+                                name="endYear"
+                                value={formik.values.endYear}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.endYear}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Engine:"
+                                variant="outlined"
+                                type="text"
+                                name="engine"
+                                value={formik.values.engine}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.engine}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Horse Power:"
+                                variant="outlined"
+                                type="text"
+                                name="horsePower"
+                                value={formik.values.horsePower}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.horsePower}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Fuel Type:"
+                                variant="outlined"
+                                type="text"
+                                name="fuelType"
+                                value={formik.values.fuelType}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.fuelType}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Fuel Consumption - City:"
+                                variant="outlined"
+                                type="text"
+                                name="fuelConsumptionCity"
+                                value={formik.values.fuelConsumptionCity}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.fuelConsumptionCity}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Fuel Consumption - Open Road:"
+                                variant="outlined"
+                                type="text"
+                                name="fuelConsumptionOpenRoad"
+                                value={formik.values.fuelConsumptionOpenRoad}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.fuelConsumptionOpenRoad}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Top Speed:"
+                                variant="outlined"
+                                type="text"
+                                name="topSpeed"
+                                value={formik.values.topSpeed}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.topSpeed}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="0-100:"
+                                variant="outlined"
+                                type="text"
+                                name="zeroToHundred"
+                                value={formik.values.zeroToHundred}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.zeroToHundred}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Torque:"
+                                variant="outlined"
+                                type="text"
+                                name="torque"
+                                value={formik.values.torque}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.torque}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Number Of Cylinders:"
+                                variant="outlined"
+                                type="text"
+                                name="numberOfCylinders"
+                                value={formik.values.numberOfCylinders}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.numberOfCylinders}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Number Of Valves:"
+                                variant="outlined"
+                                type="text"
+                                name="numberOfValves"
+                                value={formik.values.numberOfValves}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.numberOfValves}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Number Of Seats:"
+                                variant="outlined"
+                                type="text"
+                                name="numberOfSeats"
+                                value={formik.values.numberOfSeats}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.numberOfSeats}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Number Of Doors:"
+                                variant="outlined"
+                                type="text"
+                                name="numberOfDoors"
+                                value={formik.values.numberOfDoors}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.numberOfDoors}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Fuel Tank Capacity:"
+                                variant="outlined"
+                                type="text"
+                                name="fuelTankCapacity"
+                                value={formik.values.fuelTankCapacity}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.fuelTankCapacity}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Transmission:"
+                                variant="outlined"
+                                type="text"
+                                name="transmission"
+                                value={formik.values.transmission}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.transmission}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Number Of Speeds:"
+                                variant="outlined"
+                                type="text"
+                                name="numberOfSpeeds"
+                                value={formik.values.numberOfSpeeds}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.numberOfSpeeds}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Traction:"
+                                variant="outlined"
+                                type="text"
+                                name="traction"
+                                value={formik.values.traction}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.traction}</p>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined"
+                                label="Image URL:"
+                                variant="outlined"
+                                type="text"
+                                name="image"
+                                value={formik.values.image}
+                                onChange={formik.handleChange}
+                                size="small"
+                            />
+                            <p>{formik.errors.image}</p>
+                        </div>
+                    </Stack>
+                    <Button
+                        className={css.submitButton}
+                        sx={{ maxWidth: 275 }}
+                        type="submit"
+                        variant="contained"
+                        color="success"
+                    >
+                        Add Car
+                    </Button>
                 </form>
             </div>
         </div>
