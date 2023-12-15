@@ -31,7 +31,7 @@
 
 //     const handleAddCar = async () => {
 //         try {
-//             await fetch("https://final-homework-utkucfc.vercel.app/cars", {
+//             await fetch("http://localhost/cars", {
 //                 method: "POST",
 //                 headers: {
 //                     "Content-Type": "application/json",
@@ -39,7 +39,7 @@
 //                 body: JSON.stringify(newCar),
 //             });
 
-//             const updatedData = await fetch("https://final-homework-utkucfc.vercel.app/cars").then(
+//             const updatedData = await fetch("http://localhost/cars").then(
 //                 (response) => response.json()
 //             );
 //             dispatch(setCars(updatedData));
@@ -385,7 +385,7 @@ const AddCar = () => {
 
     const handleAddCar = async (values) => {
         try {
-            await fetch("https://final-homework-utkucfc.vercel.app/api/cars", {
+            await fetch("http://localhost/api/cars", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -393,9 +393,7 @@ const AddCar = () => {
                 body: JSON.stringify(values),
             });
 
-            const response = await fetch(
-                "https://final-homework-utkucfc.vercel.app/api/cars"
-            );
+            const response = await fetch("http://localhost/api/cars");
             const data = await response.json();
             dispatch(setCars(data));
 

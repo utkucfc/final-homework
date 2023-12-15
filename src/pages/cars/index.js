@@ -21,12 +21,9 @@ const Home = () => {
 
     const handleDeleteCar = async (carId) => {
         try {
-            await fetch(
-                `https://final-homework-utkucfc.vercel.app/api/cars/${carId}`,
-                {
-                    method: "DELETE",
-                }
-            );
+            await fetch(`http://localhost/api/cars/${carId}`, {
+                method: "DELETE",
+            });
 
             await fetchAndSetCars(dispatch);
         } catch (error) {
@@ -56,9 +53,7 @@ const Home = () => {
 };
 
 const fetchAndSetCars = async (dispatch) => {
-    const response = await fetch(
-        "https://final-homework-utkucfc.vercel.app/api/cars"
-    );
+    const response = await fetch("http://localhost/api/cars");
     const data = await response.json();
     dispatch(setCars(data));
 };

@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-const filePath = path.join(process.cwd(), "data", "db.json");
+const filePath = "/tmp/db.json";
 
 export const getCars = async () => {
     const cars = await fs.readFile(filePath, {

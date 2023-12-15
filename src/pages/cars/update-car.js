@@ -70,20 +70,15 @@ const UpdateCar = () => {
 
     const handleUpdateCar = async (values) => {
         try {
-            await fetch(
-                `https://final-homework-utkucfc.vercel.app/api/cars/${values.id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(values),
-                }
-            );
+            await fetch(`http://localhost/api/cars/${values.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            });
 
-            const response = await fetch(
-                "https://final-homework-utkucfc.vercel.app/api/cars"
-            );
+            const response = await fetch("http://localhost/api/cars");
             const data = await response.json();
             dispatch(setCars(data));
 
@@ -97,7 +92,7 @@ const UpdateCar = () => {
     const handleFetchCarData = async () => {
         try {
             const response = await fetch(
-                `https://final-homework-utkucfc.vercel.app/api/cars/${formik.values.id}`
+                `http://localhost/api/cars/${formik.values.id}`
             );
             const carData = await response.json();
 
