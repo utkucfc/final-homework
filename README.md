@@ -1,1 +1,1 @@
-Open [https://final-homework-utkucfc.vercel.app/](https://final-homework-utkucfc.vercel.app/) with your browser to see the result.
+Open [https://final-homework-utkucfc.vercel.app/cars](https://final-homework-utkucfc.vercel.app/cars) with your browser to see the result.
